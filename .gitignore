@@ -1,0 +1,8 @@
+*/Debug/**
+*/.vs/**
+log.txt
+custom_babduls.txt
+*.sln
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
