@@ -1,6 +1,6 @@
-*/Debug/**
-*/.vs/**
-log.txt
+Debug/
+.vs/
+logs.txt
 custom_babduls.txt
 *.sln
 *.vcxproj
