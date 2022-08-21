@@ -39,7 +39,7 @@ public:
 			logger.info("Game Mode Selected: " + to_string(gameModeSelected));
 
 			// Set global objects:
-			
+
 			// 1. Setup play spotters
 			logger.info("Setting up play spotters");
 			PlaySpotter team1PlaySpotter;

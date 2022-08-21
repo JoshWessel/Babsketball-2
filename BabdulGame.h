@@ -30,7 +30,7 @@ class BabdulGame
 	bool isASeries = false;
 	int gameNumber = 1;
 	int gamesInSeries = 1;
-	
+
 	BabdulManager babMan;
 
 	Sliders gameSliders;
@@ -234,8 +234,6 @@ public:
 			cout << "Using default matchups. You can edit matchups midgame in the pause menu." << endl;
 		}
 
-		// TipOff call used to be here
-
 		// Game loop
 		if (numUsers == 0 || numUsers == 1 || numUsers == 2)
 		{
@@ -325,7 +323,7 @@ public:
 					}
 				}
 			}
-			
+
 		}
 		// 1 Player
 		else if (numPlayers == 1)
@@ -450,7 +448,7 @@ public:
 		string pos5 = "      ";
 		string pos6 = "      ";
 		string pos7 = "  |   ";
-		
+
 		for (int i = 0; i < t.getNumPlayers(); i++)
 		{
 			if (t.players.at(i).getLocation() == 1)
@@ -470,7 +468,7 @@ public:
 			else
 				cout << t.players.at(i).getBabName() << " has an invalid position" << endl;
 		}
-		
+
 		cout << "|----------------------------------" << endl;
 		cout << "|  " << pos4 << endl;
 		cout << "|--------------------. " << endl;
@@ -528,7 +526,7 @@ public:
 				findGuardedBy(p, defenders).getInteriorD() <<
 				endl;
 			setDefaultTextColor();
-		cout << "----------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------" << endl;
+			cout << "----------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------" << endl;
 		}
 		printBCDF(t, bc, defender);
 	}
@@ -675,10 +673,6 @@ public:
 				logger.error("Invalid team number");
 			}
 
-			// Adjust matchups
-			//if (!userHasSetMatchups)
-			//	setDefaultMatchups(team1, team2);
-
 			// Find Ball Carrier and his matchup
 			if (needMatchupUpdate)
 			{
@@ -688,17 +682,6 @@ public:
 			int currPlayerIndex = getCurrPlayerIndex(team1);
 			int randDefenderIndex = getDefenderIndex(team1, team2);
 
-			//for (int i = 0; i < team1.getNumPlayers(); i++)
-			//{
-			//	if (team1.players.at(i).getBallCarrier() == true)
-			//	{
-			//		currPlayerIndex = i;
-			//		randDefenderIndex = findDefensiveMatchupIndex(BC, team2) + numDrives;
-			//		if (randDefenderIndex >= 5)
-			//			randDefenderIndex -= 5;
-			//	}
-			//}
-
 			printCourt(team1);
 			printTeamAttributes(team1, BC, team2, DF);
 
@@ -707,7 +690,6 @@ public:
 			{
 				playResults.pr_6_result = "FAILURE";
 				playResults.pr_7_reason = "Shot clock expired";
-				//cout << endl << "Shot clock turnover." << endl << endl;
 				recordHistoricalPlay(currTeamNum, team1.getTeamName(), false);
 				BC.addTurnover();
 				resetPossession();
@@ -758,8 +740,6 @@ public:
 					{
 						choice = "back down";
 					}
-
-					//cout << endl << "AI chooses to " << choice << " with " << BC.getBabName() << "." << endl;
 				}
 				// Player Decision
 				else
@@ -780,7 +760,6 @@ public:
 					string shootChance = BC.shootChance(team1.players.at(findPasserIndex(team1)), DF, numPasses, numDrives, timesThisPlayHasBeenRun);
 
 					// Print options
-					//cout << endl << "Press '/' to pause. Would you like to pass (p), drive (d), back down (b), shoot (s), hold (h), or do something Babdulish (!) with " << BC.getBabName() << "? ";
 					cout << endl;
 					cout << "         ================|================|================|================|================|================|================|" << endl;
 					cout << "Options: Pause (/)       | Pass (p [name])| Drive (d)      | Back Down (b)  | Shoot (s)      | Hold (h)       | Babdul (!)     |" << endl;
@@ -818,7 +797,7 @@ public:
 					playResults.pr_6_result = "SUCCESS";
 					playResults.pr_7_reason = "Turn conceded. You're so nice!";
 					cout << endl << "Conceding Turn..." << endl << endl;
-					
+
 					// Prevent time change
 					shotClock++;
 					time--;
@@ -861,7 +840,6 @@ public:
 						playResults.skipPostPlay = true;
 
 						BC.addPoints(points);
-						//BC.printStats();
 
 						if (numPasses > 0)
 							team1.players.at(findPasserIndex(team1)).addAssist();
@@ -959,16 +937,9 @@ public:
 				else if (psd == "h" || psd == "H")
 				{
 					playResults.pr_3_playerChoice = "HOLD";
-					//cout << endl << BC.getBabName() << " holds the ball." << endl << endl;
 
 					playResults.pr_6_result = "SUCCESS";
 					playResults.pr_7_reason = BC.getBabName() + " held the ball";
-
-					// Shot clock warning
-					if (shotClock == 1)
-					{
-						//cout << endl << "WARNING: Shot clock is winding down..." << endl;
-					}
 
 					playResults.printResults();
 				}
@@ -1020,8 +991,6 @@ public:
 						else if (currTeamNum == 2)
 							team2Score += points;
 
-						//cout << endl << BC.getBabName() << " Scored!" << endl << endl;
-
 						playResults.pr_6_result = "SUCCESS";
 						playResults.pr_7_reason = BC.getBabName() + " scored " + to_string(points) + " points!";
 						playResults.skipPostPlay = true;
@@ -1036,7 +1005,6 @@ public:
 						}
 
 						BC.addPoints(points);
-						//BC.printStats();
 
 						if (numPasses > 0)
 							team1.players.at(findPasserIndex(team1)).addAssist();
@@ -1065,14 +1033,11 @@ public:
 					// shot attempt is on target, but defense blocks the shot
 					else if (blockAttempt)
 					{
-						//cout << endl << DF.getBabName() << " blocks " << BC.getBabName() << "!" << endl << endl;
-
 						playResults.pr_6_result = "FAILURE";
 						playResults.pr_7_reason = DF.getBabName() + " blocked the shot!";
 						playResults.skipPostPlay = true;
 
 						team2.players.at(randDefenderIndex).addBlock();
-						//team2.players.at(randDefenderIndex).printStats();
 
 						recordHistoricalPlay(currTeamNum, team1.getTeamName(), false);
 						resetPossession();
@@ -1098,7 +1063,6 @@ public:
 					// shot attempt is unsuccessful
 					else if (!shotAttempt)
 					{
-						//cout << endl << BC.getBabName() << " missed." << endl << endl;
 						team1.players.at(findPasserIndex(team1)).setWasPasser(false);
 
 						playResults.pr_6_result = "FAILURE";
@@ -1110,8 +1074,6 @@ public:
 							{
 								if (team1.players.at(i).getIsRebounder() == true)
 								{
-									//cout << "OFFENSIVE REBOUND: ";
-									//cout << team1.players.at(i).getBabName() << " (" << team1.players.at(i).getOffRebound() << " off reb) gets the offensive rebound!" << endl;
 									team1.players.at(i).addOffRebound();
 									team1.players.at(i).setIsRebounder(false);
 
@@ -1148,8 +1110,6 @@ public:
 							{
 								if (team2.players.at(i).getIsRebounder() == true)
 								{
-									//cout << "Defensive rebound: ";
-									//cout << team2.players.at(i).getBabName() << " (" << team2.players.at(i).getDefRebound() << " def reb) gets the defensive rebound." << endl;
 									team2.players.at(i).addDefRebound();
 									team2.players.at(i).setIsRebounder(false);
 
@@ -1209,11 +1169,9 @@ public:
 						}
 
 						passTo = team1.players.at(passTarget).getBabName();
-						//cout << "AI attempts to pass the ball to " << passTo << endl;
 					}
 					else
 					{
-						//cout << "Which teammate would you like to pass the ball to? ";
 						cout << "To:     ";
 						cin >> passTo;
 						cout << endl;
@@ -1230,8 +1188,6 @@ public:
 					transform(passTo.begin(), passTo.end(), passTo.begin(), ::tolower);
 					if (passTo == lowerBabName && !AIPossession)
 					{
-						//cout << BC.getBabName() << " unsuccessfully passes to himself, turning it over." << endl;
-
 						playResults.pr_6_result = "FAILURE";
 						playResults.pr_7_reason = BC.getBabName() + " tried to pass to himself";
 
@@ -1267,12 +1223,9 @@ public:
 							// Pass attempt is successful
 							if (passAttempt)
 							{
-								//cout << endl << endl << "SUCCESS ";
-								//cout << BC.getBabName() << " passes to " << passTo << "." << endl << endl;
-
 								playResults.pr_6_result = "SUCCESS";
 								playResults.pr_7_reason = BC.getBabName() + " passed to " + passTo;
-								
+
 								numPasses++;
 								numCurrDrives = 0;
 
@@ -1285,22 +1238,14 @@ public:
 								else
 									BC.setWasPasser(true);
 
-								// Shot clock warning
-								if (shotClock == 1)
-								{
-									//cout << endl << "WARNING: Shot clock is winding down..." << endl;
-								}
-
 								playResults.printResults();
 							}
 							// Pass attempt is unsuccessful
 							else
 							{
-								//cout << endl << BC.getBabName() << " turns it over while trying to pass to " << passTo << "." << endl << endl;
-
 								playResults.pr_6_result = "FAILURE";
 								playResults.pr_7_reason = BC.getBabName() + " turns it over while trying to pass to " + passTo;
-								
+
 								BC.addTurnover();
 								recordHistoricalPlay(currTeamNum, team1.getTeamName(), false);
 								resetPossession();
@@ -1332,11 +1277,9 @@ public:
 						checkedTeammates++;
 						if (checkedTeammates >= 5)
 						{
-							//cout << endl << passTo << " is on the bench! " << BC.getBabName() << " turns it over while trying to pass to " << passTo << " on the bench." << endl << endl;
-							
 							playResults.pr_6_result = "FAILURE";
 							playResults.pr_7_reason = passTo + " is on the bench!" + BC.getBabName() + " turns it over while trying to pass to " + passTo;
-							
+
 							BC.addTurnover();
 							recordHistoricalPlay(currTeamNum, team1.getTeamName(), false);
 							resetPossession();
@@ -1376,8 +1319,6 @@ public:
 					// Player drives out of bounds
 					if (numCurrDrives > 2)
 					{
-						//cout << endl << BC.getBabName() << " turns it over." << endl << endl;
-
 						playResults.pr_6_result = "FAILURE";
 						playResults.pr_7_reason = BC.getBabName() + " drives out of bounds";
 
@@ -1415,25 +1356,17 @@ public:
 							playResults.pr_6_result = "SUCCESS";
 							if (numCurrDrives == 1)
 							{
-								//cout << endl << BC.getBabName() << " drives. They are currently at the free throw line." << endl << endl;
 								playResults.pr_7_reason = BC.getBabName() + " drives and is at the free throw line";
 								BC.setLocation(6);
 							}
 							else if (numCurrDrives == 2)
 							{
-								//cout << endl << BC.getBabName() << " drives. They are currently at the basket." << endl << endl;
 								playResults.pr_7_reason = BC.getBabName() + " drives and is at the basket";
 								BC.setLocation(7);
 							}
 							else
 							{
 								cout << endl << BC.getBabName() << " drives." << endl << endl;
-							}
-
-							// Shot clock warning
-							if (shotClock == 1)
-							{
-								//cout << "WARNING: Shot clock is winding down..." << endl;
 							}
 
 							needMatchupUpdate = true;
@@ -1443,8 +1376,6 @@ public:
 						// Drive is not successful
 						else
 						{
-							//cout << endl << BC.getBabName() << " turns it over." << endl << endl;
-
 							playResults.pr_6_result = "FAILURE";
 
 							BC.addTurnover();
@@ -1486,8 +1417,6 @@ public:
 					// Player drives out of bounds
 					if (numCurrDrives > 2)
 					{
-						//cout << endl << BC.getBabName() << " turns it over." << endl << endl;
-
 						playResults.pr_6_result = "FAILURE";
 						playResults.pr_7_reason = BC.getBabName() + " backs down out of bounds";
 
@@ -1525,25 +1454,13 @@ public:
 							playResults.pr_6_result = "SUCCESS";
 							if (numCurrDrives == 1)
 							{
-								//cout << endl << BC.getBabName() << " backs down the defender. They are currently in the high post." << endl << endl;
 								playResults.pr_7_reason = BC.getBabName() + " backs down and is at the high post";
 								BC.setLocation(6);
 							}
 							else if (numCurrDrives == 2)
 							{
-								//cout << endl << BC.getBabName() << " backs down the defender. They are currently at the basket." << endl << endl;
 								playResults.pr_7_reason = BC.getBabName() + " backs down and is at the basket";
 								BC.setLocation(7);
-							}
-							else
-							{
-								//cout << endl << BC.getBabName() << " backs down the defender." << endl << endl;
-							}
-
-							// Shot clock warning
-							if (shotClock == 1)
-							{
-								//cout << "WARNING: Shot clock is winding down..." << endl;
 							}
 
 							playResults.printResults();
@@ -1552,8 +1469,6 @@ public:
 						// Drive is not successful
 						else
 						{
-							//cout << endl << BC.getBabName() << " turns it over." << endl << endl;
-
 							playResults.pr_6_result = "FAILURE";
 							playResults.pr_7_reason = BC.getBabName() + " was unable to back down the defender";
 
@@ -1584,7 +1499,6 @@ public:
 				else
 				{
 					playResults.pr_3_playerChoice = "NONE";
-					//cout << "Invalid option. " << BC.getBabName() << " does nothing and turns the ball over.";
 					playResults.pr_6_result = "FAILURE";
 					playResults.pr_7_reason = BC.getBabName() + " chooses to do nothing and loses the ball";
 					BC.addTurnover();
@@ -1592,7 +1506,7 @@ public:
 					resetPossession();
 					switchBallCarriers(BC, DF);
 					team1.players.at(findPasserIndex(team1)).setWasPasser(false);
-					
+
 					playResults.printResults();
 
 					if (time + 1 < gameLength)
@@ -1799,7 +1713,7 @@ public:
 		offensiveReboundingTeam.players = babMan.sortBy(offensiveReboundingTeam.players, "offReb");
 		defensiveReboundingTeam.players = babMan.sortBy(defensiveReboundingTeam.players, "defReb");
 
-		// check for skilled offensive rebounder
+		// Check for skilled offensive rebounder
 		int variation = rand() % 2;
 		int randDR = rand() % numDefensiveRebounders;
 		if (numOffensiveRebounders > 0)
@@ -1868,7 +1782,7 @@ public:
 			logger.debug("[DEF REBOUND] " + defensiveReboundingTeam.players.at(randRebounderIndex).getBabName());
 			return 2;
 		}
-		
+
 		logger.error("No rebounder found");
 	}
 
@@ -1921,7 +1835,7 @@ public:
 			cout << "  <  <  <  <  <  <  <  <  <  <  <  <  <  <  <  <  PAUSE MENU  >  >  >  >  >  >  >  >  >  >  >  >  >  >  >  >  " << endl;
 			cout << "==============================================================================================================" << endl;
 
-			cout <<  endl << endl;
+			cout << endl << endl;
 			cout << "  ------------------------" << endl;
 			cout << "  (0) Return to Game      " << endl;
 			cout << "  ------------------------" << endl;
@@ -1935,7 +1849,7 @@ public:
 			cout << "  ------------------------" << endl;
 			cout << "  (5) Play History        " << endl;
 			cout << "  ------------------------" << endl;
-			
+
 			cout << endl << "Please select one of the above options (enter the option number): ";
 			cin >> option;
 
@@ -2056,7 +1970,7 @@ public:
 				cin >> newSliderName;
 
 				cout << endl << endl;
-				
+
 				if (newSliderName == 1)
 				{
 					gameSliders.setSliderName("Custom");
@@ -2203,7 +2117,7 @@ public:
 
 				Sliders preset_PerfectPassing; // Perfect Passing
 				preset_PerfectPassing.setSliders("Perfect Passing", 0, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1);
-				
+
 				// Display Options
 				system("cls");
 				gameSliders.printSlidersHeader();

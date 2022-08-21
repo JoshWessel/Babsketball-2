@@ -54,7 +54,7 @@ public:
 		else
 		{
 			resetTeamColor();
-			logger.error("Team color not found. Error automatically corrected by setting team color to default. No further action is required");
+			logger.warn("Team color not found, applying default color");
 		}
 	}
 

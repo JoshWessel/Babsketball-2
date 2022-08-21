@@ -55,7 +55,7 @@ public:
 
 		for (int i = 0; i < plays.size(); i++)
 		{
-			if (plays.at(i).substr(18,7) == "SUCCESS")
+			if (plays.at(i).substr(18, 7) == "SUCCESS")
 				setTextColor(GREEN);
 			else
 				setTextColor(DEFAULT);

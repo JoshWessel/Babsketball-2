@@ -4,10 +4,8 @@
 #include <sstream>
 #include <string>
 #include <vector>
-//#include <algorithm>
 #include <random>
 #include <time.h>
-//#include <cmath>
 
 using namespace std;
 
@@ -264,14 +262,4 @@ public:
 		cout << "=====================================================================================================================" << endl;
 	}
 
-
-
 };
-
-
-
-
-
-
-
-

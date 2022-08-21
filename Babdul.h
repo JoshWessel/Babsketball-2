@@ -46,30 +46,6 @@ public:
 	int rebounds;
 	int turnovers;
 
-	//float babdulishness;
-
-	//// Shooting Attributes
-	//int shotClose;
-	//int shotMid;
-	//int shot3;
-
-	//// Playmaking Attributes
-	//int passAccuracy;
-
-	//// Defense Attributes
-	//int perimeterD;
-	//int interiorD;
-	//int shotContest;
-	//int block;
-
-	//// Rebounding Attributes
-	//int defRebound;
-	//int offRebound;
-
-	//// Athleticism Attributes
-	//int strength;
-	//int speed;
-
 	int location;
 
 	string matchupName;
@@ -210,7 +186,7 @@ public:
 		"Xouggg ",
 		"Youggg ",
 		"Zouggg ",
-		
+
 		"Crougg ",
 		"Drougg ",
 		"Brougg ",
@@ -469,7 +445,7 @@ public:
 	pair<int, int> generateHeight()
 	{
 		vector<pair<int, int>> heights = {
-			
+
 			make_pair(5,10),
 
 			make_pair(5,11),
@@ -915,7 +891,7 @@ public:
 		int variation = rand() % 10 - 5;
 		return (base + variation);
 	}
-	
+
 	int generateSpeed(int height)
 	{
 		int base = height - 10;
@@ -950,7 +926,7 @@ public:
 
 		if (build == "Defender     " && base < 80 && (position == "C " || position == "PF"))
 			base += 10;
-		
+
 		int variation = rand() % 10 - 5;
 		return (base + variation);
 	}
@@ -1087,7 +1063,7 @@ public:
 		return (base);
 	}
 
-	int heightInInches(pair<int,int> height)
+	int heightInInches(pair<int, int> height)
 	{
 		// 5ft = 60 inches
 		// 6ft = 72 inches
@@ -1232,7 +1208,7 @@ public:
 		resetSliders(1);
 	}
 
-	Babdul(string babName, pair<int,int> height, int weight, string position, string tier, string build, float babdulishness, int shotClose, int shotMid, int shot3, int passAccuracy, int perimeterD, int interiorD, int shotContest, int block, int defRebound, int offRebound, int speed, int strength)
+	Babdul(string babName, pair<int, int> height, int weight, string position, string tier, string build, float babdulishness, int shotClose, int shotMid, int shot3, int passAccuracy, int perimeterD, int interiorD, int shotContest, int block, int defRebound, int offRebound, int speed, int strength)
 	{
 		this->babName = babName;
 		age = rand() % 7 + 18;
@@ -1241,13 +1217,13 @@ public:
 		this->position = position;
 		this->tier = tier;
 		this->build = build;
-		
+
 		BABDULISHNESS = babdulishness;
-		
+
 		SHOT_CLOSE = shotClose;
 		SHOT_3 = shot3;
 		SHOT_MID = shotMid;
-		
+
 		PASS_ACC = passAccuracy;
 
 		PER_D = perimeterD;
@@ -1379,7 +1355,7 @@ public:
 	int getWeight() { return this->weight; }
 
 	pair<int, int> getHeight() { return this->height; }
-	int getHeightInInches() { return ((height.first * 12) + height.second);	}
+	int getHeightInInches() { return ((height.first * 12) + height.second); }
 
 	string getPosition() { return this->position; }
 
@@ -1389,7 +1365,7 @@ public:
 	void resetSliders(int sliderNum) { sliders.setSliders("Default", sliderNum); }
 
 	float getBabdulishness() { return BABDULISHNESS; }
-	
+
 	int getShotClose() { return SHOT_CLOSE; }
 	int getShotMid() { return SHOT_MID; }
 	int getShot3() { return SHOT_3; }
@@ -1444,7 +1420,7 @@ public:
 
 	string getMatchup() { return matchupName; }
 	void setMatchup(string matchupName) { this->matchupName = matchupName; }
-	
+
 	void printStats()
 	{
 		cout << endl;
@@ -1455,23 +1431,23 @@ public:
 		cout << "Build:             " << getBuild() << endl;
 		cout << "---------------------------" << endl;
 		cout << "Overall:           " << getOverall() << endl
-			<< endl;			    
-		cout << "Babdulishness:     " << getBabdulishness() << endl 
-			<< endl;			    
+			<< endl;
+		cout << "Babdulishness:     " << getBabdulishness() << endl
+			<< endl;
 		cout << "Shot Close:        " << getShotClose() << endl;
 		cout << "Shot Mid:          " << getShotMid() << endl;
 		cout << "Shot 3:            " << getShot3() << endl
-			<< endl;			    
+			<< endl;
 		cout << "Passing Accuracy:  " << getPassAccuracy() << endl
 			<< endl;
 		cout << "Perimeter Defense: " << getPerimeterD() << endl;
 		cout << "Interior Defense:  " << getInteriorD() << endl;
 		cout << "Shot Contest:      " << getShotContest() << endl;
 		cout << "Block:             " << getBlock() << endl
-			<< endl;			    
+			<< endl;
 		cout << "Defensive Rebound: " << getDefRebound() << endl;
 		cout << "Offensive Rebound: " << getOffRebound() << endl
-			<< endl;			    
+			<< endl;
 		cout << "Speed:             " << getSpeed() << endl;
 		cout << "Strength:          " << getStrength() << endl;
 		cout << "---------------------------" << endl;
@@ -1482,7 +1458,7 @@ public:
 	{
 		//cout << "             BabName Position Tier       Build         Age Weight Height      Overall Babdulishness S-Close S-Mid S-3 PSAC Per-D Int-D S-Contest Block Def-Reb Off-Reb Speed Strength" << endl;
 		//cout << "             ========================================================================================================================================================================" << endl;
-		cout << 
+		cout <<
 			getBabName() << " " <<
 			getPosition() << "       " <<
 			getTier() << " " <<
@@ -1614,7 +1590,7 @@ public:
 			this->overall = 99;
 		else if (this->overall < 25)
 			this->overall = 25;
-		
+
 		if (BABDULISHNESS > 99)
 			BABDULISHNESS = 99;
 		else if (BABDULISHNESS < 10)
@@ -1725,7 +1701,6 @@ public:
 
 		int percentChance = newSkill - newBabdulishness + 1;
 		if (percentChance < 0) { percentChance = 0; }
-		//cout << endl << "B:" << newBabdulishness << " S: " << newSkill << " (" << newSkill-newBabdulishness << "%)" << endl;
 
 		/*unsigned int seconds = 1000;
 		cout << endl << "Shooting";
@@ -1738,18 +1713,14 @@ public:
 		Sleep(0.2 * seconds);
 		cout << endl << "Chance: " << success << endl;*/
 
-		//cout << endl << "B:" << newBabdulishness << " S: " << newSkill << endl << "Chance: " << success << ". ";
 		if (newSkill + ((defender.getShotContest() * defender.sliders.slider_shotContest) / 7) > success && success > newSkill)
 			playResults.pr_7_reason = "Defender's shot contest altered the shot";
-			//cout << "Defender's shot contest altered the shot" << endl;
 		else if (newSkill + ((defender.getShotContest() * defender.sliders.slider_shotContest) / 7) * timesRunModifier > success&& success > newSkill)
 			playResults.pr_7_reason = "The defense recognizes this play (run " + to_string(timesPlayRun) + "x), improving the defenders shot contest";
 		else if (success < newBabdulishness)
 			playResults.pr_7_reason = "Too much babdulishness";
-			//cout << "Too much Babdulishness" << endl;
 		else if (success > newSkill)
 			playResults.pr_7_reason = "Not enough skill";
-			//cout << "Insufficient shooting skill" << endl;
 
 		playResults.pr_4_range = "B: " + to_string(newBabdulishness) + " S: " + to_string(newSkill);
 		playResults.pr_5_roll = to_string(success);
@@ -1814,7 +1785,6 @@ public:
 
 		int percentChance = newSkill - newBabdulishness + 1;
 		if (percentChance < 0) { percentChance = 0; }
-		//cout << endl << "B:" << newBabdulishness << " S: " << newSkill << " (" << newSkill - newBabdulishness << "%)" << endl;
 
 		/*unsigned int seconds = 1000;
 		cout << endl << "Shooting";
@@ -1826,19 +1796,15 @@ public:
 		cout << " .";
 		Sleep(0.2 * seconds);
 		cout << endl << "Chance: " << success << endl << endl;*/
-		
-		//cout << endl << "B:" << newBabdulishness << " S: " << newSkill << endl << "Chance: " << success << ". ";
+
 		if (newSkill + ((defender.getShotContest() * defender.sliders.slider_shotContest) / 7) > success && success > newSkill)
 			playResults.pr_7_reason = "Defender's shot contest altered the shot";
-		//cout << "Defender's shot contest altered the shot" << endl;
 		else if (newSkill + ((defender.getShotContest() * defender.sliders.slider_shotContest) / 7) * timesRunModifier > success&& success > newSkill)
 			playResults.pr_7_reason = "The defense recognizes this play (run " + to_string(timesPlayRun) + "x), improving the defenders shot contest";
 		else if (success < newBabdulishness)
 			playResults.pr_7_reason = "Too much babdulishness";
-			//cout << "Too much Babdulishness" << endl;
 		else if (success > newSkill)
 			playResults.pr_7_reason = "Not enough skill";
-			//cout << "Insufficient shooting skill" << endl;
 
 		playResults.pr_4_range = "B: " + to_string(newBabdulishness) + " S: " + to_string(newSkill);
 		playResults.pr_5_roll = to_string(success);
@@ -1928,13 +1894,10 @@ public:
 			newBabdulishness -= 1;
 		}
 
-		//cout << endl << "B:" << newBabdulishness << " S: " << newSkill << endl << "Chance: " << success << ". ";
 		if (success < newBabdulishness)
 			playResults.pr_7_reason = "Too much babdulishness";
-			//cout << "Too much Babdulishness" << endl;
 		else if (success > newSkill)
 			playResults.pr_7_reason = "Not enough passing accuracy";
-			//cout << "Insufficient passing accuracy" << endl;
 
 		playResults.pr_4_range = "B: " + to_string(newBabdulishness) + " S: " + to_string(newSkill);
 		playResults.pr_5_roll = to_string(success);
@@ -1995,16 +1958,12 @@ public:
 			newBabdulishness -= 1;
 		}
 
-		//cout << endl << "B:" << newBabdulishness << " S: " << newSkill << endl << "Chance: " << success << ". ";
 		if (success < newBabdulishness)
 			playResults.pr_7_reason = "Too much babdulishness";
-			//cout << "Too much Babdulishness" << endl;
 		else if (success > newSkill)
 			playResults.pr_7_reason = "Not enough speed";
-			//cout << "Insufficient speed" << endl;
 		else if (SPEED < (defender.getPerimeterD() - (numPasses + (numDrives * 2))))
 			playResults.pr_7_reason = "Defender's perimeter defense prevented the drive";
-			//cout << "The defender's perimeter D prevented the drive and forced a turnover" << endl;
 
 		playResults.pr_4_range = "B: " + to_string(newBabdulishness) + " S: " + to_string(newSkill);
 		playResults.pr_5_roll = to_string(success);
@@ -2071,16 +2030,12 @@ public:
 		int variation = rand() % 10 - 5;
 		int defenderInteriorD = (defender.getInteriorD() * defender.sliders.slider_interiorD) + variation - 10;
 
-		//cout << endl << "B:" << newBabdulishness << " S: " << newSkill << endl << "Chance: " << success << ". ";
 		if (success < newBabdulishness)
 			playResults.pr_7_reason = "Too much babdulishness";
-			//cout << "Too much Babdulishness" << endl;
 		else if (success > newSkill)
 			playResults.pr_7_reason = "Not enough strength";
-			//cout << "Insufficient strength" << endl;
 		else if (STRENGTH < defenderInteriorD)
 			playResults.pr_7_reason = "Defender's interior defense prevented the back down attempt";
-			//cout << "The defender's interior D prevented the back down attempt and forced a turnover" << endl;
 
 		playResults.pr_4_range = "B: " + to_string(newBabdulishness) + " S: " + to_string(newSkill);
 		playResults.pr_5_roll = to_string(success);
@@ -2127,11 +2082,11 @@ public:
 		else if (percentChance < 100) { buffer = " "; }
 		return buffer + to_string(percentChance) + "%";
 	}
-	
+
 	bool attemptBlock()
 	{
 		int success = rand() % 100 + 1;
-		
+
 		int newSkill = ((BLOCK * sliders.slider_block) - 25);
 		int newBabdulishness = (BABDULISHNESS * sliders.slider_babdulishness);
 

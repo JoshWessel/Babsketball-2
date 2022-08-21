@@ -40,7 +40,7 @@ public:
 		{
 			logger.debug("No successful plays to search");
 		}
-		
+
 		return count;
 	}
 

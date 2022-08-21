@@ -19,7 +19,7 @@ public:
 	vector<Team> teams;
 
 	Babdul babReference;
-	
+
 	int setup(int draftSize)
 	{
 		int option = -1;
@@ -240,7 +240,7 @@ public:
 				}
 				team1 = userTeam1;
 				cout << endl << endl << "Welcome ";	team1.printTeamName(); cout << "!" << endl << endl;
-				
+
 				// Team 2 Creation
 				cout << "----------------------------------" << endl;
 				cout << "Player 2 please enter a team name: ";
@@ -398,7 +398,7 @@ public:
 				int deleteOption;
 				cout << "Enter the number of the player you wish to delete: ";
 				cin >> deleteOption;
-			
+
 				if (deleteOption > 0 && deleteOption <= savedBabduls.size())
 				{
 					savedBabduls.erase(savedBabduls.begin() + deleteOption - 1);
@@ -491,14 +491,14 @@ public:
 			logger.skipLine();
 		}
 	}
-	
-	void createCustomBabdul(string name, pair<int,int> height, int weight, string position, string tier, string build, float babdulishness, int shotClose, int shotMid, int shot3, int passAccuracy, int perimeterD, int interiorD, int shotContest, int block, int defRebound, int offRebound, int speed, int strength, bool isInDraft)
+
+	void createCustomBabdul(string name, pair<int, int> height, int weight, string position, string tier, string build, float babdulishness, int shotClose, int shotMid, int shot3, int passAccuracy, int perimeterD, int interiorD, int shotContest, int block, int defRebound, int offRebound, int speed, int strength, bool isInDraft)
 	{
 		Babdul customBab(name, height, weight, position, tier, build, babdulishness, shotClose, shotMid, shot3, passAccuracy, perimeterD, interiorD, shotContest, block, defRebound, offRebound, speed, strength, isInDraft);
 		//customBabdulsInDraft.push_back(customBab);
 		savedBabduls.push_back(customBab);
 	}
-	
+
 	void createCustomBabdulMenu(int draftsize)
 	{
 		system("cls");
@@ -512,7 +512,7 @@ public:
 		cout << "====================" << endl;
 		cout << "CREATE CUSTOM BABDUL" << endl;
 		cout << "====================" << endl << endl;
-		
+
 		system("cls");
 		cout << "Please enter a name for your Babdul: ";
 		string name;
@@ -799,7 +799,7 @@ public:
 		cout << endl;
 
 		fstream savedBabdulsFile;
-		savedBabdulsFile.open("custom_babduls.txt",std::fstream::app);
+		savedBabdulsFile.open("custom_babduls.txt", std::fstream::app);
 		string tab = "\t";
 		string newLine = "\n";
 		savedBabdulsFile << newLine;
@@ -844,7 +844,7 @@ public:
 		savedBabdulsFile << speed;
 		savedBabdulsFile << tab;
 		savedBabdulsFile << strength;
-		
+
 		savedBabdulsFile.close();
 
 		createCustomBabdul(name, make_pair(height_feet, height_inches), weight, position, tier, build, babdulishness, shotClose, shotMid, shot3, passAccuracy, perimeterD, interiorD, shotContest, block, dReb, oReb, speed, strength, true);
@@ -920,7 +920,7 @@ public:
 		fstream savedBabdulsFile;
 		savedBabdulsFile.open("custom_babduls.txt");
 		savedBabduls.clear();
-	
+
 		while (!savedBabdulsFile.eof())
 		{
 			string isInDraftString;
@@ -933,116 +933,116 @@ public:
 
 			string name;
 			getline(savedBabdulsFile, name, '\t');
-	
+
 			string height_feet_string;
 			int height_feet;
 			getline(savedBabdulsFile, height_feet_string, '\t');
 			stringstream ssHeight(height_feet_string);
 			ssHeight >> height_feet;
-	
+
 			string height_inches_string;
 			int height_inches;
 			getline(savedBabdulsFile, height_inches_string, '\t');
 			stringstream ssHeight2(height_inches_string);
 			ssHeight2 >> height_inches;
-	
+
 			string weight_string;
 			int weight;
 			getline(savedBabdulsFile, weight_string, '\t');
 			stringstream ssWeight(weight_string);
 			ssWeight >> weight;
-			
+
 			string position;
 			getline(savedBabdulsFile, position, '\t');
-			
+
 			string tier;
 			getline(savedBabdulsFile, tier, '\t');
-	
+
 			string build;
 			getline(savedBabdulsFile, build, '\t');
-	
+
 			string babdulishness_string;
 			int babdulishness;
 			getline(savedBabdulsFile, babdulishness_string, '\t');
 			stringstream ssBabdulishness(babdulishness_string);
 			ssBabdulishness >> babdulishness;
-	
+
 			string shotClose_string;
 			int shotClose;
 			getline(savedBabdulsFile, shotClose_string, '\t');
 			stringstream ssshotClose(shotClose_string);
 			ssshotClose >> shotClose;
-	
+
 			string shotMid_string;
 			int shotMid;
 			getline(savedBabdulsFile, shotMid_string, '\t');
 			stringstream ssshotMid(shotMid_string);
 			ssshotMid >> shotMid;
-	
+
 			string shot3_string;
 			int	shot3;
 			getline(savedBabdulsFile, shot3_string, '\t');
 			stringstream ssshot3(shot3_string);
 			ssshot3 >> shot3;
-	
+
 			string passAccuracy_string;
 			int	passAccuracy;
 			getline(savedBabdulsFile, passAccuracy_string, '\t');
 			stringstream sspassAccuracy(passAccuracy_string);
 			sspassAccuracy >> passAccuracy;
-	
+
 			string perimeterD_string;
 			int	perimeterD;
 			getline(savedBabdulsFile, perimeterD_string, '\t');
 			stringstream ssperimeterD(perimeterD_string);
 			ssperimeterD >> perimeterD;
-	
+
 			string interiorD_string;
 			int	interiorD;
 			getline(savedBabdulsFile, interiorD_string, '\t');
 			stringstream ssinteriorD(interiorD_string);
 			ssinteriorD >> interiorD;
-	
+
 			string shotContest_string;
 			int	shotContest;
 			getline(savedBabdulsFile, shotContest_string, '\t');
 			stringstream ssshotContest(shotContest_string);
 			ssshotContest >> shotContest;
-	
+
 			string block_string;
 			int	block;
 			getline(savedBabdulsFile, block_string, '\t');
 			stringstream ssblock(block_string);
 			ssblock >> block;
-	
+
 			string dReb_string;
 			int	dReb;
 			getline(savedBabdulsFile, dReb_string, '\t');
 			stringstream ssdReb(dReb_string);
 			ssdReb >> dReb;
-	
+
 			string oReb_string;
 			int	oReb;
 			getline(savedBabdulsFile, oReb_string, '\t');
 			stringstream ssoReb(oReb_string);
 			ssoReb >> oReb;
-	
+
 			string speed_string;
 			int	speed;
 			getline(savedBabdulsFile, speed_string, '\t');
 			stringstream ssspeed(speed_string);
 			ssspeed >> speed;
-	
+
 			string strength_string;
 			int	strength;
 			getline(savedBabdulsFile, strength_string);
 			stringstream ssstrength(strength_string);
 			ssstrength >> strength;
-	
+
 			Babdul savedBabdul(name, make_pair(height_feet, height_inches), weight, position, tier, build, babdulishness, shotClose, shotMid, shot3, passAccuracy, perimeterD, interiorD, shotContest, block, dReb, oReb, speed, strength, isInDraft);
 			savedBabduls.push_back(savedBabdul);
 		}
-	
+
 		savedBabdulsFile.close();
 	}
 
@@ -1198,7 +1198,7 @@ public:
 		else if (player == 2)
 			team2.addPlayer(draftClass.at(randSelection));
 
-		draftClass.erase(draftClass.begin() + (randSelection));
+		draftClass.erase(draftClass.begin() + randSelection);
 	}
 
 	void pickPlayer(int player, int sortby)
@@ -1351,16 +1351,16 @@ public:
 			else
 				return "D-";
 		}
-		
+
 		else if (attribute == "shotClose")
 			return placeHolderTemplate(babdul.draftAttributes.shotClose);
-		
+
 		else if (attribute == "shotMid")
 			return placeHolderTemplate(babdul.draftAttributes.shotMid);
 
 		else if (attribute == "shot3")
 			return placeHolderTemplate(babdul.draftAttributes.shot3);
-		
+
 		else if (attribute == "passAccuracy")
 			return placeHolderTemplate(babdul.draftAttributes.passAccuracy);
 
@@ -1372,10 +1372,10 @@ public:
 
 		else if (attribute == "shotContest")
 			return placeHolderTemplate(babdul.draftAttributes.shotContest);
-		
+
 		else if (attribute == "block")
 			return placeHolderTemplate(babdul.draftAttributes.block);
-		
+
 		else if (attribute == "defReb")
 			return placeHolderTemplate(babdul.draftAttributes.defRebound);
 
@@ -1439,7 +1439,7 @@ public:
 		draftClass = sortBy(draftClass, sortString);
 
 		for (int i = 0; i < draftClass.size(); i++)
-		{			
+		{
 			string babdulishnessPH = placeholderValues(draftClass.at(i), "babdulishness");
 			string shotClosePH = placeholderValues(draftClass.at(i), "shotClose");
 			string shotMidPH = placeholderValues(draftClass.at(i), "shotMid");
@@ -1453,7 +1453,7 @@ public:
 			string offRebPH = placeholderValues(draftClass.at(i), "offReb");
 			string speedPH = placeholderValues(draftClass.at(i), "speed");
 			string strengthPH = placeholderValues(draftClass.at(i), "strength");
-			
+
 			string gap = "";
 			if (draftClass.at(i).getHeight().second != 10 && draftClass.at(i).getHeight().second != 11)
 			{
@@ -1548,7 +1548,7 @@ public:
 		cout << "Size: " << team.getNumPlayers() << endl << endl;
 		cout << "BabNumber BabName Position Tier       Build         Age Weight Height      Overall Babdulishness S-Close S-Mid S-3 PSAC Per-D Int-D S-Contest Block Def-Reb Off-Reb Speed Strength" << endl;
 		cout << "==================================================================================================================================================================================" << endl;
-		
+
 		team.players = sortBy(team.players, "Overall");
 
 		for (int i = 0; i < team.getNumPlayers(); i++)
@@ -1619,7 +1619,7 @@ public:
 					team.players.at(i).getSpeed() << "    " <<
 					team.players.at(i).getStrength() << "" <<
 					endl;
-					cout << "----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
+				cout << "----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------" << endl;
 			}
 		}
 		cout << endl;

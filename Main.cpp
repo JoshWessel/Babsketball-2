@@ -44,11 +44,11 @@ int main()
 	logger.info("=== EXECUTION STARTING ===");
 	logger.skipLine();
 
-	// Set Random Seed
+	// Set random seed
 	logger.info("Setting a random seed");
 	srand(time(0));
 
-	// Set Window Size
+	// Set window size
 	logger.info("Preparing window");
 	HWND console = GetConsoleWindow();
 	RECT r;

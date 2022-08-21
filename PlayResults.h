@@ -3,9 +3,6 @@
 #include <vector>
 #include <windows.h>
 
-//#include "Logger.h"
-//#include "TextColors.h"
-
 using namespace std;
 
 class PlayResults
