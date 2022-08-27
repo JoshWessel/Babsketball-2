@@ -268,7 +268,7 @@ public:
 		}
 		else
 		{
-			cout << "Invalid position. Defaulting to All-Around build" << endl;
+			logger.warn(babName + "'s position is invalid, defaulting to All-Around build");
 			return "All_Around";
 		}
 	}
@@ -449,9 +449,11 @@ public:
 			make_pair(5,10),
 
 			make_pair(5,11),
+			make_pair(5,11),
 
 			make_pair(6,0),
 			make_pair(6,0),
+			make_pair(6,0),
 
 			make_pair(6,1),
 			make_pair(6,1),
@@ -536,6 +538,7 @@ public:
 			make_pair(6,11),
 			make_pair(6,11),
 
+			make_pair(7,0),
 			make_pair(7,0),
 			make_pair(7,0),
 			make_pair(7,0),
@@ -674,6 +677,7 @@ public:
 		else
 		{
 			cout << "Invalid tier" << endl;
+			logger.error(babName + " has an invalid tier");
 		}
 	}
 
@@ -809,7 +813,7 @@ public:
 		}
 		else
 		{
-			cout << "Build not found" << endl;
+			logger.error(babName + " build not found");
 		}
 	}
 

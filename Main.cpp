@@ -21,7 +21,6 @@ using namespace std;
 //		- Clutch Factor
 // - Add quarters / halftime
 // - Add pause menu options
-//		- Adjust matchups
 //		- Call timeout
 //		- Substitutions
 // - Intentional fouling (automatic by default, can toggle it in pause menu settings)
@@ -29,6 +28,8 @@ using namespace std;
 // - Combine pregame menus into a single menu
 // - Save/load teams
 // - Increase team size to allow subs
+// - Add screen-setting (BC can call for screen, defender can choose to go over or switch, result is either a switched matchup or improved chance to drive past defender)
+// - Add an option to save the log file for the game after each game
 
 // Bugs to fix:
 

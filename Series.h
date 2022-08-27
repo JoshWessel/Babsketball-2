@@ -58,12 +58,10 @@ public:
 			if (gameResult == 1)
 			{
 				team1Wins++;
-				//cout << "Team 1 " << babMan.team1.getTeamName() << " wins game " << gamesPlayed + 1 << "!" << endl;
 			}
 			else if (gameResult == 2)
 			{
 				team2Wins++;
-				//cout << "Team 2 " << babMan.team2.getTeamName() << " wins game " << gamesPlayed + 1 << "!" << endl;
 			}
 			else
 			{

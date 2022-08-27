@@ -42,14 +42,27 @@ public:
 
 	BabdulGame(BabdulManager& babMan, vector<PlaySpotter> playSpotters)
 	{
+		logger.info("Initializing Game...");
 		this->babMan = babMan;
 		numUsers = babMan.numUsers;
+		logger.info("Number of users: " + to_string(numUsers));
 
 		gameLength = babMan.gameLength;
+		logger.info("Game length: " + to_string(gameLength));
 		shotClockLength = babMan.shotClockLength;
+		logger.info("Shot clock length: " + to_string(shotClockLength));
 
 		team1PlaySpotter = playSpotters.at(0);
 		team2PlaySpotter = playSpotters.at(1);
+		logger.info("Assigned play spotters");
+
+		allPlays.deleteAllPlays();
+
+		logger.skipLine();
+		logger.divider("=");
+		logger.info("SUCCESS! Game successfully initialized");
+		logger.divider("=");
+		logger.skipLine();
 	}
 
 	void resetPossession()

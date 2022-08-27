@@ -47,6 +47,12 @@ public:
 		logger.debug("Deleted play at index " + index);
 	}
 
+	void deleteAllPlays()
+	{
+		plays.clear();
+		logger.debug("Deleted all historical plays");
+	}
+
 	void printHistoricalPlays()
 	{
 		cout << "Team Name       | Outcome | Play                                                          " << endl;
