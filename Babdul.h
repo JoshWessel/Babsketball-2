@@ -2,6 +2,7 @@
 #include "Attributes.h"
 #include "Logger.h"
 #include "PlayResults.h"
+#include "GlobalEnvs.h"
 
 #define BABDULISHNESS	attributes.babdulishness
 #define SHOT_CLOSE		attributes.shotClose

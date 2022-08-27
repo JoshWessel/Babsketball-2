@@ -215,21 +215,8 @@ public:
 		system("pause");
 	}
 
-	int playGame(int timeLimit, int overtimeLimit, bool isASeries, int gameNumberInSeries, int gamesInSeries)
+	void preGameMatchups()
 	{
-		if (isASeries)
-		{
-			this->isASeries = true;
-			this->gameNumber = gameNumberInSeries;
-			this->gamesInSeries = gamesInSeries;
-		}
-
-		system("cls");
-		applyGameSlidersToPlayers();
-
-		setDefaultMatchups(babMan.team1, babMan.team2);
-		setDefaultMatchups(babMan.team2, babMan.team1);
-
 		cout << "======================" << endl;
 		cout << "PREGAME STEP: MATCHUPS" << endl;
 		cout << "======================" << endl;
@@ -245,6 +232,27 @@ public:
 		else
 		{
 			cout << "Using default matchups. You can edit matchups midgame in the pause menu." << endl;
+		}
+	}
+
+	int playGame(int timeLimit, int overtimeLimit, bool isASeries, int gameNumberInSeries, int gamesInSeries)
+	{
+		if (isASeries)
+		{
+			this->isASeries = true;
+			this->gameNumber = gameNumberInSeries;
+			this->gamesInSeries = gamesInSeries;
+		}
+
+		system("cls");
+		applyGameSlidersToPlayers();
+
+		setDefaultMatchups(babMan.team1, babMan.team2);
+		setDefaultMatchups(babMan.team2, babMan.team1);
+
+		if (!SIM)
+		{
+			preGameMatchups();
 		}
 
 		// Game loop

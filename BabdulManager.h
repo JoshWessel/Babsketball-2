@@ -25,6 +25,8 @@ public:
 		int option = -1;
 		while (option != 1 && option != 2)
 		{
+			SIM = false;
+
 			system("cls");
 			setTextColor(DARK_YELLOW);
 			cout << "O=====================================================================================================================================O" << endl;
@@ -51,18 +53,19 @@ public:
 			}
 			else if (option == 1)
 			{
-				createTeams(true);
+				SIM = true;
+				createTeams();
 				createDraftClass(customBabdulsInDraft, draftSize);
-				draft(true);
+				draft();
 			}
 			else if (option == 2)
 			{
 				numUsersMenu();
-				createTeams(false);
+				createTeams();
 				//loadSavedBabdulsFromFile();
 				//manageCustomBabduls();
 				createDraftClass(customBabdulsInDraft, draftSize);
-				draft(false);
+				draft();
 			}
 			else if (option == 3)
 			{
@@ -71,6 +74,7 @@ public:
 			else
 			{
 				cout << "Invalid option. Please select one of the available options" << endl << endl;
+				logger.warn("Invalid option selected");
 				system("pause");
 			}
 			return 1;
@@ -110,6 +114,7 @@ public:
 			else
 			{
 				cout << "Invalid option. Please select one of the available options" << endl << endl;
+				logger.warn("Invalid option selected");
 				system("pause");
 			}
 		}
@@ -203,9 +208,9 @@ public:
 		cout << endl;
 	}
 
-	void createTeams(bool sim)
+	void createTeams()
 	{
-		if (!sim)
+		if (!SIM)
 		{
 			system("cls");
 			cout << "=========================" << endl;
@@ -1046,7 +1051,7 @@ public:
 		savedBabdulsFile.close();
 	}
 
-	void draft(bool sim)
+	void draft()
 	{
 		system("cls");
 		int picksMade = 0;
@@ -1056,7 +1061,7 @@ public:
 		cout << "================================" << endl << endl;
 
 		int numPlayers = 0;
-		if (!sim)
+		if (!SIM)
 		{
 			cout << "How many players will be participating in the draft (0, 1, 2)? ";
 			cin >> numPlayers;
