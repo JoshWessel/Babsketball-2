@@ -2397,6 +2397,7 @@ public:
 			}
 		}
 		logger.error("Unable to find current player index");
+		return 0;
 	}
 
 	int getDefenderIndex(Team& team1, Team& team2)
@@ -2415,6 +2416,7 @@ public:
 			}
 		}
 		logger.error("Unable to find defender index");
+		return 0;
 	}
 
 	void randomizeMatchups(Team& team1, Team& team2)

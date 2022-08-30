@@ -32,7 +32,9 @@ public:
 			setDefaultTextColor();
 			cout << "     (3) 3-Point Contest" << endl;
 			cout << endl;
-			cout << "     (4) Manage Custom Babduls" << endl;
+			cout << "     (4) Shooting Practice" << endl;
+			cout << endl;
+			cout << "     (5) Manage Custom Babduls" << endl;
 
 			cout << endl << "Please Select A Game Mode: ";
 			cin >> gameModeSelected;
@@ -91,6 +93,12 @@ public:
 				system("pause");
 			}
 			else if (gameModeSelected == 4)
+			{
+				logger.info("Loading Shooting Practice...");
+
+				shotMeter.shootMenu();
+			}
+			else if (gameModeSelected == 5)
 			{
 				logger.info("Loading Custom Babdul Manager...");
 
