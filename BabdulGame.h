@@ -986,12 +986,29 @@ public:
 						timesThisPlayHasBeenRun = team2PlaySpotter.countTimesPlayRun();
 					}
 
+					// Automatic shot
 					bool shotAttempt;
 					if (numPasses > 0)
 						shotAttempt = BC.shoot(team1.players.at(findPasserIndex(team1)), DF, numPasses, numDrives, timesThisPlayHasBeenRun);
 					else if (numPasses == 0)
 						shotAttempt = BC.shoot(DF, numPasses, numDrives, timesThisPlayHasBeenRun);
 
+					// Manual shot
+					int shotSkillRating = 10;
+					if (BC.getLocation() == 7)
+						shotSkillRating = BC.getShotClose();
+					else if (BC.getLocation() == 6)
+						shotSkillRating = BC.getShotMid();
+					else if (BC.getLocation() < 6)
+						shotSkillRating = BC.getShot3();
+					string manualShotAttempt = "YELLOW";
+
+					if (!AIPossession)
+					{
+						manualShotAttempt = shotMeter.playerShoot(shotSkillRating, BC.getBabdulishness());
+					}
+
+					// Attempt block
 					bool blockAttempt;
 					if (BC.getHeightInInches() >= DF.getHeightInInches() + 4)
 						blockAttempt = false;
@@ -999,7 +1016,7 @@ public:
 						blockAttempt = DF.attemptBlock();
 
 					// Shot attempt is successful, defense is unable to defend
-					if (shotAttempt && !blockAttempt)
+					if ((shotAttempt && manualShotAttempt != "RED" && !blockAttempt) || (manualShotAttempt == "GREEN"))
 					{
 						int points;
 						if (BC.getLocation() < 6)
@@ -1087,6 +1104,8 @@ public:
 						team1.players.at(findPasserIndex(team1)).setWasPasser(false);
 
 						playResults.pr_6_result = "FAILURE";
+						if (manualShotAttempt == "RED")
+							playResults.pr_7_reason = "Inaccurate manual shot";
 
 						if (findRebounder(team1, team2) == 1)
 						{
