@@ -29,8 +29,6 @@ class ShotMeter
 	int minGreenRating = 85;
 	int maxBabdulishnessRating = 30;
 
-	bool scored = false;
-
 	int numShots = 1;
 
 	unsigned int seconds = 1000;
@@ -49,7 +47,7 @@ class ShotMeter
 		}
 	}
 
-	void resetLimits()
+	void reset()
 	{
 		int needle = 0;
 
@@ -109,10 +107,60 @@ class ShotMeter
 		setDefaultTextColor();
 	}
 
+	void displayFinalMeter(string outcome)
+	{
+		system("cls");
+
+		for (int i = 0; i < width; i++)
+		{
+			if (i == width / 2 && gMinSuccess != NULL)
+				setTextColor(GREEN);
+			else if (i <= yMinSuccess || i >= yMaxSuccess)
+				setTextColor(RED);
+			else
+				setTextColor(DARK_YELLOW);
+			cout << "=";
+		}
+		cout << endl;
+
+		if (outcome == "GREEN")
+			setTextColor(GREEN);
+		else if (outcome == "RED")
+			setTextColor(RED);
+		else
+			setTextColor(DARK_YELLOW);
+
+		for (int i = 0; i < width; i++)
+		{
+			if (needle == i)
+			{
+				cout << "*";
+			}
+			else
+			{
+				cout << "-";
+			}
+		}
+		cout << endl;
+
+		for (int i = 0; i < width; i++)
+		{
+			if (i == width / 2 && gMinSuccess != NULL)
+				setTextColor(GREEN);
+			else if (i <= yMinSuccess || i >= yMaxSuccess)
+				setTextColor(RED);
+			else
+				setTextColor(DARK_YELLOW);
+			cout << "=";
+		}
+		cout << endl;
+
+		setDefaultTextColor();
+	}
+
 	void shoot(int skill, int babdulishness)
 	{
 		needle = 0;
-		scored = false;
 		stopShotMeter = false;
 
 		HANDLE handle = CreateThread(NULL, 0, thread1, NULL, 0, NULL);
@@ -128,6 +176,7 @@ class ShotMeter
 
 				if (stopShotMeter)
 				{
+					displayFinalMeter(checkIfScored());
 					break;
 				}
 			}
@@ -139,28 +188,58 @@ class ShotMeter
 
 				if (stopShotMeter)
 				{
+					displayFinalMeter(checkIfScored());
 					break;
 				}
 			}
 		}
 	}
 
+	void printBar(string outcome)
+	{
+		cout << endl;
+		for (int i = 0; i < width; i++)
+		{
+			if (outcome == "GREEN")
+			{
+				setTextColor(GREEN);
+				cout << "$";
+			}
+			else if (outcome == "RED")
+			{
+				setTextColor(RED);
+				cout << "X";
+			}
+			else
+			{
+				setTextColor(DARK_YELLOW);
+				cout << "/";
+			}
+		}
+		cout << endl;
+
+		setDefaultTextColor();
+	}
+
 	string checkIfScored()
 	{
 		if (needle >= gMinSuccess && needle <= gMaxSuccess)
 		{
+			//printBar("GREEN");
 			return "GREEN";
 		}
 		else if (needle >= yMinSuccess && needle <= yMaxSuccess)
 		{
+			//printBar("YELLOW");
 			return "YELLOW";
 		}
 		else
 		{
+			//printBar("RED");
 			return "RED";
 		}
 
-		resetLimits();
+		reset();
 	}
 
 public:

@@ -1099,7 +1099,7 @@ public:
 						}
 					}
 					// shot attempt is unsuccessful
-					else if (!shotAttempt)
+					else if (!shotAttempt || manualShotAttempt == "RED")
 					{
 						team1.players.at(findPasserIndex(team1)).setWasPasser(false);
 
